@@ -1,147 +1,357 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Registro de Miembros</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
     <style>
-        body { font-family: 'Inter', sans-serif; }
+      body {
+        font-family: "Inter", sans-serif;
+      }
+
+      /* Estilos para el modal (pop up) */
+      .modal-overlay {
+        transition: opacity 0.3s ease;
+      }
+      .modal-panel {
+        transition: transform 0.3s ease, opacity 0.3s ease;
+      }
+
+      .modal-hidden {
+        opacity: 0;
+        pointer-events: none;
+      }
+      .modal-visible {
+        opacity: 1;
+        pointer-events: auto;
+      }
+      .panel-hidden {
+        transform: scale(0.95);
+        opacity: 0;
+      }
+      .panel-visible {
+        transform: scale(1);
+        opacity: 1;
+      }
     </style>
-</head>
-<body class="h-screen w-full flex overflow-hidden">
-
+  </head>
+  <body class="h-screen w-full flex overflow-hidden relative">
     <div class="hidden md:block w-1/2 relative">
-        
-        <img 
-            src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhVd4LTW2qtXDiIn6fe-luoHXpSK0TfeqrKM0QAi_vvI1OtvVKRBr8GN3FiddcP_COrJjATQg2Ldrh_9uR7uPC0bQBN1RBk2uV0vVm0Wx-3ioQsKtDAoRRQN7U_rCph4Ns77jEsMOlC-asya4MMiDHZ4xKwIv2ea2FwX4XCTc3L0pOKLqk8quUx4czyphc/s16000/Gemini_Generated_Image_y74c4by74c4by74c.png" 
-            alt="El futuro" 
-            class="absolute inset-0 w-full h-full object-cover"
+      <img
+        src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhVd4LTW2qtXDiIn6fe-luoHXpSK0TfeqrKM0QAi_vvI1OtvVKRBr8GN3FiddcP_COrJjATQg2Ldrh_9uR7uPC0bQBN1RBk2uV0vVm0Wx-3ioQsKtDAoRRQN7U_rCph4Ns77jEsMOlC-asya4MMiDHZ4xKwIv2ea2FwX4XCTc3L0pOKLqk8quUx4czyphc/s16000/Gemini_Generated_Image_y74c4by74c4by74c.png"
+        alt="El futuro"
+        class="absolute inset-0 w-full h-full object-cover"
+      />
+      <div
+        class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent"
+      ></div>
+      <div class="absolute bottom-0 left-0 p-16 w-full z-10">
+        <h1
+          class="text-4xl lg:text-4xl font-bold text-white tracking-tight leading-tight drop-shadow-lg"
         >
-        
-        <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent"></div>
-
-        <div class="absolute bottom-0 left-0 p-16 w-full z-10">
-            <h1 class="text-4xl lg:text-5xl font-bold text-white tracking-tight leading-tight drop-shadow-lg">
-                El futuro espera por nosotros
-            </h1>
-        </div>
+          El futuro espera por nosotros
+        </h1>
+      </div>
     </div>
 
-    <div class="w-full md:w-1/2 bg-[#1a1a1a] flex items-center justify-center p-4">
-    
-    <div class="relative bg-white w-full max-w-md rounded-[2.5rem] p-8 md:p-10 shadow-2xl overflow-hidden">
-        
-        <a href="index.html" class="absolute top-6 right-6 p-1 text-black hover:bg-gray-100 rounded-full transition">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-            </svg>
+    <div
+      class="w-full md:w-1/2 bg-[#1a1a1a] flex items-center justify-center p-4"
+    >
+      <div
+        class="relative bg-white w-full max-w-md rounded-[2.5rem] p-8 md:p-10 shadow-2xl overflow-hidden max-h-full overflow-y-auto"
+      >
+        <a
+          href="index.html"
+          class="absolute top-6 right-6 p-1 text-black hover:bg-gray-100 rounded-full transition"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="2"
+            stroke="currentColor"
+            class="w-6 h-6"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M6 18L18 6M6 6l12 12"
+            />
+          </svg>
         </a>
 
         <div class="mb-6 mt-2">
-            <h2 class="text-2xl font-bold text-black text-center mb-4">Registro de miembros</h2>
-            <p class="text-xs font-semibold text-black leading-snug text-center px-2">
-                Sólo necesitas tu número de cédula y teléfono de contacto para completar el registro
-            </p>
+          <h2 class="text-2xl font-bold text-black text-center mb-4">
+            Registro de miembros
+          </h2>
+          <p
+            class="text-xs font-semibold text-black leading-snug text-center px-2"
+          >
+            Sólo necesitas tu número de cédula y teléfono de contacto para
+            completar el registro
+          </p>
         </div>
 
         <form action="#" class="space-y-4">
-            
-            <!-- Campo Cédula -->
-            <div>
-                <label class="block text-sm font-bold text-black mb-1 ml-1">
-                    Cedula de identidad <span class="text-red-500">*</span>
-                </label>
-                <input 
-                    type="text"
-                    placeholder="Digite su cédula sin guiones" 
-                    class="w-full bg-white border border-black rounded-xl px-4 py-2.5 outline-none focus:ring-2 focus:ring-green-400 focus:border-transparent transition-all"
+          <div>
+            <label class="block text-sm font-bold text-black mb-1 ml-1">
+              Cedula de identidad <span class="text-red-500">*</span>
+            </label>
+            <input
+              type="text"
+              placeholder="Digite su cédula sin guiones"
+              class="w-full bg-white border border-black rounded-xl px-4 py-2.5 outline-none focus:ring-2 focus:ring-green-400 focus:border-transparent transition-all"
+            />
+          </div>
+
+          <div>
+            <label class="block text-sm font-bold text-black mb-1 ml-1">
+              Teléfono de contacto <span class="text-red-500">*</span>
+            </label>
+            <input
+              type="tel"
+              placeholder="Digite su teléfono"
+              class="w-full bg-white border border-black rounded-xl px-4 py-2.5 outline-none focus:ring-2 focus:ring-green-400 focus:border-transparent transition-all"
+            />
+          </div>
+
+          <div>
+            <label class="block text-sm font-bold text-black mb-1 ml-1">
+              Distrito Municipal Zambrana Abajo
+              <span class="text-red-500">*</span>
+            </label>
+            <div class="relative">
+              <select
+                class="w-full bg-white border border-black rounded-xl px-4 py-2.5 outline-none focus:ring-2 focus:ring-green-400 focus:border-transparent transition-all appearance-none text-gray-700 cursor-pointer"
+              >
+                <option value="" disabled selected>Selecciona tu sector</option>
+                <option value="Sección - El Limpio">Sección - El Limpio</option>
+                <option value="Paraje - Sabana Rey">Paraje - Sabana Rey</option>
+                <option value="Paraje - Jobo Claro">Paraje - Jobo Claro</option>
+                <option value="Paraje - Guardianón">Paraje - Guardianón</option>
+                <option value="Paraje - La Atravesada">
+                  Paraje - La Atravesada
+                </option>
+                <option value="Paraje - Los Corocitos">
+                  Paraje - Los Corocitos
+                </option>
+                <option value="Paraje - San lsidro">Paraje - San lsidro</option>
+                <option value="Barrio - Las Flores">Barrio - Las Flores</option>
+                <option value="Paraje - La Cabirma">Paraje - La Cabirma</option>
+                <option value="Paraje - El Maricao">Paraje - El Maricao</option>
+                <option value="Sección - La Lechosa">
+                  Sección - La Lechosa
+                </option>
+                <option value="Sección - Zambrana Arriba">
+                  Sección - Zambrana Arriba
+                </option>
+                <option value="Sección - Sabana Larga">
+                  Sección - Sabana Larga
+                </option>
+                <option value="Sección - Chacuey">Sección - Chacuey</option>
+                <option value="Sección - Maldonado Arriba">
+                  Sección - Maldonado Arriba
+                </option>
+                <option value="Sección - Las Lagunas">
+                  Sección - Las Lagunas
+                </option>
+                <option value="Sección - Tocoa">Sección - Tocoa</option>
+                <option value="Sección - Palo de Cuaba">
+                  Sección - Palo de Cuaba
+                </option>
+                <option value="Sección - Tojín">Sección - Tojín</option>
+                <option value="Sección - El Cotorro">
+                  Sección - El Cotorro
+                </option>
+                <option value="Sección - Las Caoba">Sección - Las Caoba</option>
+                <option value="Sección - Los Yagrumos">
+                  Sección - Los Yagrumos
+                </option>
+                <option value="Sección - La Plaseta">
+                  Sección - La Plaseta
+                </option>
+                <option value="Sección – La Jagua">Sección – La Jagua</option>
+              </select>
+              <div
+                class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-black"
+              >
+                <svg
+                  class="h-5 w-5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
                 >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M19 9l-7 7-7-7"
+                  ></path>
+                </svg>
+              </div>
             </div>
+          </div>
 
-            <!-- Campo Teléfono -->
-            <div>
-                <label class="block text-sm font-bold text-black mb-1 ml-1">
-                    Teléfono de contacto <span class="text-red-500">*</span>
-                </label>
-                <input 
-                    type="tel"
-                    placeholder="Digite su teléfono"  
-                    class="w-full bg-white border border-black rounded-xl px-4 py-2.5 outline-none focus:ring-2 focus:ring-green-400 focus:border-transparent transition-all"
-                >
-            </div>
+          <div class="space-y-3 pt-2">
+            <button
+              type="button"
+              class="w-full bg-[#55FF55] hover:bg-[#4ce64c] text-black font-bold py-3 rounded-full shadow-md transition-transform transform active:scale-95 text-base"
+            >
+              Crear registro
+            </button>
 
-            <!-- Nuevo Selector de Sector -->
-            <div>
-                <label class="block text-sm font-bold text-black mb-1 ml-1">
-                    Distrito Municipal Zambrana Abajo <span class="text-red-500">*</span>
-                </label>
-                <div class="relative">
-                    <select class="w-full bg-white border border-black rounded-xl px-4 py-2.5 outline-none focus:ring-2 focus:ring-green-400 focus:border-transparent transition-all appearance-none text-gray-700 cursor-pointer">
-                        <option value="" disabled selected>Selecciona tu sector</option>
-                        <option value="Sección - El Limpio">Sección - El Limpio</option>
-                        <option value="Paraje - Sabana Rey">Paraje - Sabana Rey</option>
-                        <option value="Paraje - Jobo Claro">Paraje - Jobo Claro</option>
-                        <option value="Paraje - Guardianón">Paraje - Guardianón</option>
-                        <option value="Paraje - La Atravesada">Paraje - La Atravesada</option>
-                        <option value="Paraje - Los Corocitos">Paraje - Los Corocitos</option>
-                        <option value="Paraje - San lsidro">Paraje - San lsidro</option>
-                        <option value="Barrio - Las Flores">Barrio - Las Flores</option>
-                        <option value="Paraje - La Cabirma">Paraje - La Cabirma</option>
-                        <option value="Paraje - El Maricao">Paraje - El Maricao</option>
-                        <option value="Sección - La Lechosa">Sección - La Lechosa</option>
-                        <option value="Sección - Zambrana Arriba">Sección - Zambrana Arriba</option>
-                        <option value="Sección - Sabana Larga">Sección - Sabana Larga</option>
-                        <option value="Sección - Chacuey">Sección - Chacuey</option>
-                        <option value="Sección - Maldonado Arriba">Sección - Maldonado Arriba</option>
-                        <option value="Sección - Las Lagunas">Sección - Las Lagunas</option>
-                        <option value="Sección - Tocoa">Sección - Tocoa</option>
-                        <option value="Sección - Palo de Cuaba">Sección - Palo de Cuaba</option>
-                        <option value="Sección - Tojín">Sección - Tojín</option>
-                        <option value="Sección - El Cotorro">Sección - El Cotorro</option>
-                        <option value="Sección - Las Caoba">Sección - Las Caoba</option>
-                        <option value="Sección - Los Yagrumos">Sección - Los Yagrumos</option>
-                        <option value="Sección - La Plaseta">Sección - La Plaseta</option>
-                        <option value="Sección – La Jagua">Sección – La Jagua</option>
-                    </select>
-                    <!-- Flecha personalizada para el select -->
-                    <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-black">
-                        <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-                    </div>
-                </div>
-            </div>
+            <button
+              type="button"
+              class="w-full bg-gray-300 hover:bg-gray-400 text-black font-bold py-3 rounded-full shadow-sm transition-colors text-base"
+            >
+              Iniciar sesión
+            </button>
+          </div>
 
-            <!-- Botones -->
-            <div class="space-y-3 pt-2">
-                <button type="button" class="w-full bg-[#55FF55] hover:bg-[#4ce64c] text-black font-bold py-3 rounded-full shadow-md transition-transform transform active:scale-95 text-base">
-                    Crear registro
-                </button>
-
-                <button type="button" class="w-full bg-gray-300 hover:bg-gray-400 text-black font-bold py-3 rounded-full shadow-sm transition-colors text-base">
-                    Iniciar sesión
-                </button>
-            </div>
-
-            <!-- Nueva Sección de Consentimiento y Descargo -->
-            <div class="mt-4">
-                <div class="bg-[#4ce64c] py-1 px-3 mb-2 rounded-md">
-                    <h3 class="text-black text-bold  font-bold text-sm ">Consentimiento & descargo</h3>
-                </div>
-                <div class="text-[10px] text-black text-justify leading-tight space-y-2 px-1">
-                    <p>
-                        Por este medio, solicito libre y voluntariamente mi admisión como miembro/colaborador de este importante proyecto.
-                    </p>
-                    <p>
-                        A fin de dar cumplimiento con los reglamentos, estatutos y normativas en cuanto al proceso de admisión para los miembros que forman parte del mismo, proporciono mis datos personales, así como también, mi número de cédula de identidad y electoral, y AUTORIZO a los directivos de dicho, a utilizarlos para cumplir con sus objetivos y líneas de acción, ya sea para su conversión en partido político o agrupación/movimiento, o con la finalidad de presentar candidaturas independientes en todos los niveles del territorio nacional de la República Dominicana.
-                    </p>
-                </div>
-            </div>
-
+          <div class="mt-4 text-center">
+            <button
+              type="button"
+              onclick="toggleConsentModal()"
+              class="w-full bg-[#4ce64c] hover:bg-[#3ec43e] py-2 px-3 rounded-md transition-colors flex items-center justify-center gap-2 group"
+            >
+              <span class="text-black font-bold text-sm"
+                >Leer Consentimiento & Descargo</span
+              >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="2"
+                stroke="currentColor"
+                class="w-4 h-4 text-black group-hover:translate-x-1 transition-transform"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
+                />
+              </svg>
+            </button>
+          </div>
         </form>
+      </div>
     </div>
-</div>
 
-</body>
+    <div
+      id="consent-overlay"
+      class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm modal-overlay modal-hidden"
+    >
+      <div
+        id="consent-panel"
+        class="relative w-full max-w-lg bg-white rounded-3xl shadow-2xl p-8 modal-panel panel-hidden"
+        onclick="event.stopPropagation()"
+      >
+        <button
+          onclick="toggleConsentModal()"
+          class="absolute top-4 right-4 text-gray-400 hover:text-gray-700 transition-colors bg-gray-100 rounded-full p-1"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-6 w-6"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M6 18L18 6M6 6l12 12"
+            />
+          </svg>
+        </button>
+
+        <div class="text-center mb-4">
+          <div class="inline-block p-3 bg-green-100 rounded-full mb-3">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-8 w-8 text-green-600"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+              />
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold text-gray-900">
+            Consentimiento & Descargo
+          </h3>
+        </div>
+
+        <div
+          class="text-sm text-gray-600 text-justify leading-relaxed space-y-4 max-h-[60vh] overflow-y-auto pr-2"
+        >
+          <p>
+            Por este medio, solicito libre y voluntariamente mi admisión como
+            miembro/colaborador de este importante proyecto.
+          </p>
+          <p>
+            A fin de dar cumplimiento con los reglamentos, estatutos y
+            normativas en cuanto al proceso de admisión para los miembros que
+            forman parte del mismo, proporciono mis datos personales, así como
+            también, mi número de cédula de identidad y electoral, y AUTORIZO a
+            los directivos de dicho, a utilizarlos para cumplir con sus
+            objetivos y líneas de acción, ya sea para su conversión en partido
+            político o agrupación/movimiento, o con la finalidad de presentar
+            candidaturas independientes en todos los niveles del territorio
+            nacional de la República Dominicana.
+          </p>
+        </div>
+
+        <div class="mt-6">
+          <button
+            onclick="toggleConsentModal()"
+            class="w-full py-3 bg-black text-white rounded-xl font-bold hover:bg-gray-800 transition-all"
+          >
+            Entendido, acepto
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      function toggleConsentModal() {
+        const overlay = document.getElementById("consent-overlay");
+        const panel = document.getElementById("consent-panel");
+
+        if (overlay.classList.contains("modal-visible")) {
+          // Cerrar
+          overlay.classList.remove("modal-visible");
+          overlay.classList.add("modal-hidden");
+          panel.classList.remove("panel-visible");
+          panel.classList.add("panel-hidden");
+        } else {
+          // Abrir
+          overlay.classList.remove("modal-hidden");
+          overlay.classList.add("modal-visible");
+          panel.classList.remove("panel-hidden");
+          panel.classList.add("panel-visible");
+        }
+      }
+
+      // Cerrar al hacer click fuera del panel
+      document
+        .getElementById("consent-overlay")
+        .addEventListener("click", (e) => {
+          if (e.target === e.currentTarget) toggleConsentModal();
+        });
+    </script>
+  </body>
 </html>
