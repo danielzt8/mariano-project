@@ -532,21 +532,57 @@
 
 
 <!-- off canvas menu side bar -->
-<div id="sidebar-overlay" onclick="toggleSidebar()" class="fixed inset-0 bg-black/50 z-40 hidden transition-opacity opacity-0"></div>
+<button onclick="toggleSidebar()" class="group flex items-center justify-center p-2 rounded-full hover:bg-gray-100 transition-colors">
+    <span class="material-symbols-outlined text-gray-800 group-hover:text-green-600 transition">person</span>
+</button>
 
-<div id="sidebar-panel" class="fixed top-0 left-0 h-full w-64 bg-white z-50 transform -translate-x-full transition-transform duration-300 ease-in-out shadow-2xl p-6">
-    <button onclick="toggleSidebar()" class="absolute top-4 right-4 text-gray-500 hover:text-black">
-        <span class="material-symbols-outlined">close</span>
-    </button>
+<div id="sidebar-overlay" onclick="toggleSidebar()" class="fixed inset-0 bg-black/50 z-40 hidden transition-opacity duration-300 opacity-0 backdrop-blur-sm"></div>
 
-    <h2 class="text-xl font-bold mb-6 text-gray-800">Menú</h2>
+<div id="sidebar-panel" class="fixed top-0 left-0 h-full w-80 bg-white z-50 transform -translate-x-full transition-transform duration-300 ease-in-out shadow-2xl flex flex-col">
     
-    <ul class="space-y-4 font-medium text-gray-600">
-        <li><a href="#" class="block hover:text-green-600 transition">Inicio</a></li>
-        <li><a href="registro.html" class="block hover:text-green-600 transition">Registro</a></li>
-        <li><a href="#" onclick="toggleDonations(); toggleSidebar()" class="block hover:text-green-600 transition">Donaciones</a></li>
-        <li><a href="#" class="block hover:text-green-600 transition">Contacto</a></li>
-    </ul>
+    <div class="flex items-center justify-between p-6 border-b border-gray-100">
+        <h2 class="text-xl font-bold text-gray-800 tracking-tight">Sobre Nosotros</h2>
+        <button onclick="toggleSidebar()" class="p-2 text-gray-400 hover:text-red-500 hover:bg-red-50 rounded-full transition-colors">
+            <span class="material-symbols-outlined">close</span>
+        </button>
+    </div>
+
+    <div class="flex-1 overflow-y-auto p-6">
+        
+        <div class="relative w-32 h-32 mx-auto mb-6">
+            <div class="absolute inset-0 bg-green-500 rounded-full blur-md opacity-30 transform translate-y-2"></div>
+            <img 
+                src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhVd4LTW2qtXDiIn6fe-luoHXpSK0TfeqrKM0QAi_vvI1OtvVKRBr8GN3FiddcP_COrJjATQg2Ldrh_9uR7uPC0bQBN1RBk2uV0vVm0Wx-3ioQsKtDAoRRQN7U_rCph4Ns77jEsMOlC-asya4MMiDHZ4xKwIv2ea2FwX4XCTc3L0pOKLqk8quUx4czyphc/s16000/Gemini_Generated_Image_y74c4by74c4by74c.png" 
+                alt="Foto de Perfil" 
+                class="w-full h-full object-cover rounded-full border-4 border-white shadow-xl relative z-10"
+            >
+        </div>
+
+        <div class="text-center mb-6">
+            <h3 class="text-xl font-bold text-gray-900">Mariano Project</h3>
+            <p class="text-green-600 font-medium text-sm uppercase tracking-wider">Líder Comunitario</p>
+        </div>
+
+        <div class="text-gray-600 text-sm leading-relaxed text-justify space-y-4 font-light">
+            <p>
+                Comprometido con el desarrollo y bienestar de nuestra comunidad. Con una visión clara hacia el futuro, trabajamos incansablemente para fomentar la unión, el progreso y las oportunidades para todos los miembros del distrito.
+            </p>
+            <p>
+                Nuestra misión es transformar las ideas en acciones concretas que mejoren la calidad de vida de nuestros vecinos, siempre con transparencia y dedicación.
+            </p>
+        </div>
+
+        <div class="flex justify-center gap-4 mt-8 pt-6 border-t border-gray-100">
+            <a href="#" class="text-gray-400 hover:text-green-600 transition"><span class="material-symbols-outlined">public</span></a>
+            <a href="#" class="text-gray-400 hover:text-blue-600 transition"><span class="material-symbols-outlined">mail</span></a>
+        </div>
+    </div>
+
+    <div class="p-6 border-t border-gray-100 bg-gray-50">
+        <a href="registro.html" class="flex items-center justify-center w-full py-3 bg-gray-900 text-white rounded-xl font-bold hover:bg-black transition shadow-lg text-sm">
+            Unirse al equipo
+        </a>
+    </div>
 </div>
 <!-- sidemenu off canva  -->
 
