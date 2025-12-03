@@ -57,19 +57,9 @@
     >
       <div class="text-white font-bold text-xl tracking-tighter"></div>
 
-      <div class="flex space-x-4">
-        <a
-          href="registro.html"
-          class="bg-white text-emerald-900 px-6 py-2 rounded-full font-semibold text-sm hover:bg-emerald-50 transition shadow-lg hidden md:block"
-        >
-          Registro
-        </a>
-        <button
-          onclick="toggleDonations()"
-          class="bg-white text-emerald-900 px-6 py-2 rounded-full font-semibold text-sm hover:bg-emerald-50 transition shadow-lg hidden md:block"
-        >
-          Donaciones
-        </button>
+     <button onclick="toggleSidebar()" class="text-white hover:bg-white/10 p-2 rounded-full transition">
+    <span class="material-symbols-outlined">menu</span>
+</button>
       </div>
     </nav>
 
@@ -539,5 +529,51 @@
         window.requestAnimationFrame(step);
       });
     </script>
+
+
+<!-- off canvas menu side bar -->
+<div id="sidebar-overlay" onclick="toggleSidebar()" class="fixed inset-0 bg-black/50 z-40 hidden transition-opacity opacity-0"></div>
+
+<div id="sidebar-panel" class="fixed top-0 left-0 h-full w-64 bg-white z-50 transform -translate-x-full transition-transform duration-300 ease-in-out shadow-2xl p-6">
+    <button onclick="toggleSidebar()" class="absolute top-4 right-4 text-gray-500 hover:text-black">
+        <span class="material-symbols-outlined">close</span>
+    </button>
+
+    <h2 class="text-xl font-bold mb-6 text-gray-800">Menú</h2>
+    
+    <ul class="space-y-4 font-medium text-gray-600">
+        <li><a href="#" class="block hover:text-green-600 transition">Inicio</a></li>
+        <li><a href="registro.html" class="block hover:text-green-600 transition">Registro</a></li>
+        <li><a href="#" onclick="toggleDonations(); toggleSidebar()" class="block hover:text-green-600 transition">Donaciones</a></li>
+        <li><a href="#" class="block hover:text-green-600 transition">Contacto</a></li>
+    </ul>
+</div>
+<!-- sidemenu off canva  -->
+
+
+<!-- off canva script -->
+<script>
+    function toggleSidebar() {
+    const overlay = document.getElementById('sidebar-overlay');
+    const panel = document.getElementById('sidebar-panel');
+    
+    // Si el panel tiene la clase '-translate-x-full' está oculto, si no, está visible
+    if (panel.classList.contains('-translate-x-full')) {
+        // Abrir
+        overlay.classList.remove('hidden');
+        setTimeout(() => overlay.classList.remove('opacity-0'), 10); // Fade in suave
+        panel.classList.remove('-translate-x-full');
+    } else {
+        // Cerrar
+        overlay.classList.add('opacity-0');
+        panel.classList.add('-translate-x-full');
+        setTimeout(() => overlay.classList.add('hidden'), 300); // Esperar a que termine la animación
+    }
+}
+</script>
+
+
+<!-- off canva fin del script -->
+
   </body>
 </html>
