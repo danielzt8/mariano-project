@@ -49,6 +49,22 @@
       .text-xxs {
         font-size: 0.65rem;
       }
+
+      /* news ticker animation */
+
+      .animate-marquee {
+        animation: marquee 25s linear infinite;
+    }
+
+    @keyframes marquee {
+        0% { transform: translateX(0); }
+        100% { transform: translateX(-100%); }
+    }
+    
+    /* Pausa al pasar el mouse (aplicado al grupo padre para detener ambos bloques) */
+    .group:hover .animate-marquee {
+        animation-play-state: paused;
+    }
     </style>
   </head>
   <body class="antialiased relative bg-gray-900">
@@ -610,6 +626,61 @@
 
 
 <!-- off canva fin del script -->
+
+
+<!-- animate marquee news ticker -->
+
+<div class="fixed bottom-0 left-0 w-full bg-emerald-900 text-white z-30 py-2 border-t-2 border-emerald-500 flex overflow-hidden selection:bg-none pointer-events-auto group">
+    
+    <div class="animate-marquee whitespace-nowrap flex items-center gap-16 shrink-0 min-w-full pr-16">
+        
+        <span class="flex items-center gap-2 text-sm font-semibold tracking-wide">
+            <span class="bg-emerald-500 text-black px-2 py-0.5 rounded text-xs font-bold">EN PROGRESO</span>
+            Remozamiento Club Comunal: <span class="text-emerald-300">75%</span>
+        </span>
+
+        <span class="flex items-center gap-2 text-sm font-semibold tracking-wide">
+            <span class="bg-yellow-500 text-black px-2 py-0.5 rounded text-xs font-bold">INICIANDO</span>
+            Iluminación Calle Principal: <span class="text-yellow-300">15%</span>
+        </span>
+
+        <span class="flex items-center gap-2 text-sm font-semibold tracking-wide">
+            <span class="bg-blue-500 text-white px-2 py-0.5 rounded text-xs font-bold">CASI LISTO</span>
+            Acueducto Sector Norte: <span class="text-blue-300">90%</span>
+        </span>
+
+        <span class="flex items-center gap-2 text-sm font-semibold tracking-wide">
+            <span class="bg-purple-500 text-white px-2 py-0.5 rounded text-xs font-bold">PLANIFICACIÓN</span>
+            Jornada de Reforestación: <span class="text-purple-300">0%</span>
+        </span>
+
+    </div>
+
+    <div class="animate-marquee whitespace-nowrap flex items-center gap-16 shrink-0 min-w-full pr-16" aria-hidden="true">
+        
+        <span class="flex items-center gap-2 text-sm font-semibold tracking-wide">
+            <span class="bg-emerald-500 text-black px-2 py-0.5 rounded text-xs font-bold">EN PROGRESO</span>
+            Remozamiento Club Comunal: <span class="text-emerald-300">75%</span>
+        </span>
+
+        <span class="flex items-center gap-2 text-sm font-semibold tracking-wide">
+            <span class="bg-yellow-500 text-black px-2 py-0.5 rounded text-xs font-bold">INICIANDO</span>
+            Iluminación Calle Principal: <span class="text-yellow-300">15%</span>
+        </span>
+
+        <span class="flex items-center gap-2 text-sm font-semibold tracking-wide">
+            <span class="bg-blue-500 text-white px-2 py-0.5 rounded text-xs font-bold">CASI LISTO</span>
+            Acueducto Sector Norte: <span class="text-blue-300">90%</span>
+        </span>
+
+        <span class="flex items-center gap-2 text-sm font-semibold tracking-wide">
+            <span class="bg-purple-500 text-white px-2 py-0.5 rounded text-xs font-bold">PLANIFICACIÓN</span>
+            Jornada de Reforestación: <span class="text-purple-300">0%</span>
+        </span>
+
+    </div>
+
+</div>
 
   </body>
 </html>
